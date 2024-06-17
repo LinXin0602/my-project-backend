@@ -1,11 +1,11 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const config = require("./config/config");
 const port = config.port || 3000;
 const dbUri = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
 const cors = require("cors");
-const userRoutes = require("./routes/user.js");
-const processRoutes = require("./routes/process.js");
+const router = require("./routes/index.js");
 const mongoose = require("mongoose");
 const formatResponse = require("./middleware/formatResponse");
 const verifyToken = require("./middleware/verifyToken.js");
@@ -16,9 +16,10 @@ app.use(cors());
 app.use(formatResponse);
 //驗證JWT
 app.use(verifyToken);
+
 // Routes
-app.use("/users", userRoutes);
-app.use("/process", processRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/api", router);
 
 const startServer = () => {
   app.listen(port, () => {

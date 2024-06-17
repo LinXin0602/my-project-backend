@@ -2,9 +2,20 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 
 //白名單，在白名單內的path不用驗證jwt
-const whiteList = ["/process/login"];
+const whiteList = ["/api/process/login", /^\/uploads/];
+
 const verifyToken = async (req, res, next) => {
-  if (whiteList.includes(req.path)) {
+  console.log(req.path);
+  const isWhiteListed = whiteList.some((pattern) => {
+    if (typeof pattern === "string") {
+      return req.path === pattern;
+    } else if (pattern instanceof RegExp) {
+      return pattern.test(req.path);
+    }
+    return false;
+  });
+
+  if (isWhiteListed) {
     next();
     return;
   }
