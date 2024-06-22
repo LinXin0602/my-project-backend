@@ -9,8 +9,20 @@ const router = require("./routes/index.js");
 const mongoose = require("mongoose");
 const formatResponse = require("./middleware/formatResponse");
 const verifyToken = require("./middleware/verifyToken.js");
+const swaggerSetup = require("./utils/swagger.js");
 app.use(express.json());
 app.use(cors());
+
+// 定義API端點
+/**
+ * @swagger
+ * /api/hello:
+ *   get:
+ *     summary: Returns a hello message
+ *     responses:
+ *       200:
+ *         description: A successful response
+ */
 
 //統一response格式
 app.use(formatResponse);
@@ -20,6 +32,9 @@ app.use(verifyToken);
 // Routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api", router);
+
+// 整合Swagger
+swaggerSetup(app);
 
 const startServer = () => {
   app.listen(port, () => {
