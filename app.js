@@ -13,17 +13,6 @@ const swaggerSetup = require("./utils/swagger.js");
 app.use(express.json());
 app.use(cors());
 
-// 定義API端點
-/**
- * @swagger
- * /api/hello:
- *   get:
- *     summary: Returns a hello message
- *     responses:
- *       200:
- *         description: A successful response
- */
-
 //統一response格式
 app.use(formatResponse);
 //驗證JWT
@@ -53,7 +42,3 @@ const activateDB = async () => {
 };
 
 activateDB();
-
-app.get("/", (req, res) => {
-  res.send("這是一個get請求");
-});

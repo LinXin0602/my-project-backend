@@ -56,7 +56,7 @@ router.post("/createUser", userController.createUser);
 
 /**
  * @swagger
- * /api/users/getUserProfile:
+ *  :
  *   get:
  *     summary: Retrieve the profile of a user
  *     tags: [users]
