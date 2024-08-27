@@ -8,6 +8,7 @@ const cors = require("cors");
 const router = require("./routes/index.js");
 const mongoose = require("mongoose");
 const formatResponse = require("./middleware/formatResponse");
+const timezoneMiddleware = require("./middleware/timezoneFormat.js");
 const verifyToken = require("./middleware/verifyToken.js");
 const swaggerSetup = require("./utils/swagger.js");
 app.use(express.json());
@@ -15,6 +16,8 @@ app.use(cors());
 
 //統一response格式
 app.use(formatResponse);
+app.use(timezoneMiddleware);
+
 //驗證JWT
 app.use(verifyToken);
 
