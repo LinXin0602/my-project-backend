@@ -1,0 +1,16 @@
+services:
+  app:
+    image: yuxinlin0602/linxin-repo:latest  # 指定使用的後端應用程式映像
+    ports:
+      - "3000:3000"  # 映射本地主機的 3000 埠到容器內的 3000 port
+    environment:
+      MONGO_URL: ${MONGO_URL}  # 設定環境變數，連接 MongoDB 的 URL
+    depends_on:
+      - mongo  # 確保 MongoDB 容器先啟動，然後才啟動應用程式
+
+  mongo:
+    image: mongo  # 使用官方的 MongoDB 映像
+    ports:
+      - "27017:27017"  # 映射本地主機的 27017 埠到容器內的 27017 port
+    volumes:
+      - ./data:/data/db  # 將 MongoDB 容器內的 /data/db 目錄映射到本地的 ./data 目錄，實現數據持久化
