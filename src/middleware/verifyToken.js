@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/config");
+const config = require("../../config/config");
 
 //白名單，在白名單內的path不用驗證jwt
 const whiteList = [
@@ -11,6 +11,7 @@ const whiteList = [
 
 const verifyToken = async (req, res, next) => {
   console.log(req.path);
+
   const isWhiteListed = whiteList.some((pattern) => {
     if (typeof pattern === "string") {
       return req.path === pattern;

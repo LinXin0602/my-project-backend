@@ -1,6 +1,6 @@
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const config = require("../config/config");
+const config = require("../../config/config");
 const port = config.port || 3000;
 
 const swaggerDefinition = {

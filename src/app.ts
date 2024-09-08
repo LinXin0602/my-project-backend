@@ -1,13 +1,13 @@
-const express = require("express");
+import mongoose from "mongoose";
+import express from "express";
 const path = require("path");
 const app = express();
-const config = require("./config/config");
+const config = require("../config/config");
 const port = config.port || 3000;
 const dbUri = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
 const cors = require("cors");
 const router = require("./routes/index.js");
-const mongoose = require("mongoose");
-const formatResponse = require("./middleware/formatResponse");
+const formatResponse = require("./middleware/formatResponse.ts");
 const timezoneMiddleware = require("./middleware/timezoneFormat.js");
 const verifyToken = require("./middleware/verifyToken.js");
 const swaggerSetup = require("./utils/swagger.js");

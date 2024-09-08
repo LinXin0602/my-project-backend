@@ -1,7 +1,7 @@
-const formatResponse = (req, res, next) => {
+const formatResponse = (_: any, res: any, next: any) => {
   res.sendResponse = (
-    statusCode,
-    data,
+    statusCode: any,
+    data: any,
     message = "發生未預期錯誤，請聯繫資訊人員"
   ) => {
     const response = {
