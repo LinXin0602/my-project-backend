@@ -1,12 +1,11 @@
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-
+const mimetypeList = ["image/jpeg", "image/png"];
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const filePath = req.filePath || "uploads/";
 
-    // 如果目录不存在，创建它
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(filePath, { recursive: true });
     }
@@ -23,7 +22,8 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype !== "image/jpeg") {
+  if (!mimetypeList.includes(file.mimetype)) {
+    cb(console.log(file.mimetype));
     cb(new Error("請上傳圖片格式"));
   } else {
     cb(null, true);

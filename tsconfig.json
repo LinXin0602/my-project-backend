@@ -8,5 +8,9 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "src/types.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/types.d.ts",
+    "src/middleware/formatResponse.js"
+  ]
 }

@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
         role: user.role || "user",
       },
       config.jwtSecret,
-      { expiresIn: "1h" }
+      { expiresIn: "24h" }
     );
     const data = {
       token,
