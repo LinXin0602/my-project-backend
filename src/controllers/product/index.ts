@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { Product } from "../../models/product";
-const upload = require("../../middleware/uploadMiddleware.js");
+import upload from "../../middleware/uploadMiddleware";
 import { NextFunction } from "express";
 import type { ProductType } from "./type";
 import { promisify } from "util";

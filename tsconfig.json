@@ -6,11 +6,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "allowJs": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/types.d.ts",
-    "src/middleware/formatResponse.js"
-  ]
+    "src/**/*"
+  ],
+  "exclude": ["node_modules"]
 }

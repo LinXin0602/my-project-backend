@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import express from "express";
+import formatResponse from "./middleware/formatResponse";
+import timezoneMiddleware from "./middleware/timezoneFormat";
+import verifyToken from "./middleware/verifyToken";
 const path = require("path");
 const app = express();
 const config = require("../config/config");
@@ -7,10 +10,8 @@ const port = config.port || 3000;
 const dbUri = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
 const cors = require("cors");
 const router = require("./routes/index.js");
-const formatResponse = require("./middleware/formatResponse.ts");
-const timezoneMiddleware = require("./middleware/timezoneFormat.js");
-const verifyToken = require("./middleware/verifyToken.js");
-const swaggerSetup = require("./utils/swagger.js");
+
+const swaggerSetup = require("./utils/swagger");
 app.use(express.json());
 app.use(cors());
 

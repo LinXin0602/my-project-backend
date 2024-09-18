@@ -1,6 +1,6 @@
+import fileRoutes from "./fileRoutes/index.js";
 const userRoutes = require("./user/index.js");
 const processRoutes = require("./process/index.js");
-const fileRoutes = require("./fileRoutes/index.js");
 const taskRoutes = require("./task/index.js");
 const article = require("./article/index.js");
 const comment = require("./comment/index.js");
