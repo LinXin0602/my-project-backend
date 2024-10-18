@@ -23,8 +23,8 @@ const whiteList: (string | RegExp)[] = [
  * @param next - Express 的 NextFunction 回調函數
  */
 const verifyToken = async (
-  req: Request,
-  res: Response,
+  req: any,
+  res: any,
   next: NextFunction
 ): Promise<void> => {
   console.log(`Request Path: ${req.path}`);

@@ -10,7 +10,7 @@ const router = express.Router();
 /**
  * 文件上傳路由
  */
-router.post("/", (req: Request, res: Response, next: NextFunction) => {
+router.post("/", (req: any, res: any, next: NextFunction) => {
   uploadMiddleware.single("image")(req, res, (err: any) => {
     if (err instanceof MulterError) {
       return res.sendResponse(500, null, "文件上傳失敗");

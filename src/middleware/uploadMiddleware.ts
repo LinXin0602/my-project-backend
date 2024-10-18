@@ -17,7 +17,7 @@ const mimetypeList: string[] = ["image/jpeg", "image/png"];
  */
 const storage = multer.diskStorage({
   destination: (
-    req: Request,
+    req: any,
     file: Express.Multer.File,
     cb: (error: any, destination: string) => void
   ) => {
@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
     cb(null, filePath);
   },
   filename: (
-    req: Request,
+    req: any,
     file: Express.Multer.File,
     cb: (error: any, filename: string) => void
   ) => {
@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
  * 定義文件過濾器，以限制上傳的文件類型
  */
 const fileFilter = (
-  req: Request,
+  req: any,
   file: Express.Multer.File,
   cb: FileFilterCallback
 ): void => {

@@ -1,6 +1,6 @@
-const Comment = require("../models/comment");
+import Comment from "../../models/comment.js";
 
-exports.createdComment = async (req, res) => {
+export const createdComment = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
     const { article } = req.body;
@@ -16,7 +16,7 @@ exports.createdComment = async (req, res) => {
   }
 };
 
-exports.getComments = async (req, res) => {
+export const getComments = async (req: any, res: any) => {
   try {
     const { article } = req.query;
     const params = {
@@ -24,8 +24,10 @@ exports.getComments = async (req, res) => {
     };
     const userId = req.user.id.toString();
     const comments = await Comment.find(params).lean();
-    comments.forEach((comment) => {
-      const likedBySet = new Set(comment.likedBy.map((id) => id.toString()));
+    comments.forEach((comment: any) => {
+      const likedBySet = new Set(
+        comment.likedBy.map((id: any) => id.toString())
+      );
       comment.isLike = likedBySet.has(userId);
     });
     res.sendResponse(200, comments, "查詢成功");
@@ -33,7 +35,8 @@ exports.getComments = async (req, res) => {
     res.sendResponse(500, err);
   }
 };
-exports.deleteComment = async (req, res) => {
+
+export const deleteComment = async (req: any, res: any) => {
   try {
     const { id } = req.body;
     const comment = await Comment.findOneAndDelete({
@@ -49,7 +52,8 @@ exports.deleteComment = async (req, res) => {
     res.sendResponse(500, e);
   }
 };
-exports.likeComment = async (req, res) => {
+
+export const likeComment = async (req: any, res: any) => {
   try {
     const { id } = req.body;
     const userId = req.user.id;
@@ -81,7 +85,8 @@ exports.likeComment = async (req, res) => {
     res.sendResponse(500, e);
   }
 };
-exports.updatedComment = async (req, res) => {
+
+export const updatedComment = async (req: any, res: any) => {
   try {
     const { id } = req.body;
 

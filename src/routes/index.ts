@@ -1,13 +1,14 @@
-import fileRoutes from "./fileRoutes/index.js";
-const userRoutes = require("./user/index.js");
-const processRoutes = require("./process/index.js");
-const taskRoutes = require("./task/index.js");
-const article = require("./article/index.js");
-const comment = require("./comment/index.js");
-const product = require("./product");
-const express = require("express");
+import fileRoutes from "./fileRoutes/index";
+import userRoutes from "./user/index";
+import processRoutes from "./process/index";
+import taskRoutes from "./task/index";
+import article from "./article/index";
+import comment from "./comment/index";
+import product from "./product/index";
+import express from "express";
 
 const router = express.Router();
+
 router.use("/users", userRoutes);
 router.use("/process", processRoutes);
 router.use("/upload", fileRoutes);
@@ -16,4 +17,4 @@ router.use("/article", article);
 router.use("/comment", comment);
 router.use("/product", product);
 
-module.exports = router;
+export default router;

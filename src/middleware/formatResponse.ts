@@ -7,11 +7,7 @@ import { Request, Response, NextFunction } from "express";
  * @param res - Express 的 Response 對象，已擴展了 sendResponse 方法
  * @param next - Express 的 NextFunction 回調函數
  */
-const formatResponse = (
-  _: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+const formatResponse = (_: any, res: any, next: NextFunction): void => {
   /**
    * 自定義的回應方法
    *

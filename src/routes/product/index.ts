@@ -12,4 +12,4 @@ route.get("/getProduct", getProduct);
 route.patch("/updateProduct", updateProduct);
 route.delete("/deleteProduct", deleteProduct);
 
-module.exports = route;
+export default route;

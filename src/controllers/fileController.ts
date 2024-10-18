@@ -8,7 +8,7 @@ import { Request, Response } from "express";
  * @param req - Express 的 Request 對象，包含上傳的文件
  * @param res - Express 的 Response 對象，包含 sendResponse 方法
  */
-const uploadFile = (req: Request, res: Response): void => {
+const uploadFile = (req: any, res: any): void => {
   try {
     if (!req.file) {
       return res.sendResponse(500, null, "未選擇圖片");

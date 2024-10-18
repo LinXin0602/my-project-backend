@@ -1,8 +1,5 @@
-const express = require("express");
-const router = express.Router();
-const userController = require("../../controllers/users");
-
-const {
+import express from "express";
+import {
   getAllUsers,
   createUser,
   getUserProfile,
@@ -10,7 +7,9 @@ const {
   updateUser,
   auditUser,
   getUnauditedUsers,
-} = userController;
+} from "../../controllers/users"; // 加上 .js 擴展名
+
+const router = express.Router();
 
 router.get("/getAllUsers", getAllUsers);
 router.get("/getUserProfile", getUserProfile);
@@ -20,4 +19,4 @@ router.patch("/updateUser", updateUser);
 router.patch("/auditUser", auditUser);
 router.delete("/deleteUser", deleteUser);
 
-module.exports = router;
+export default router;

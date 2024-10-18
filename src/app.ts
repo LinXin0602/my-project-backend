@@ -3,13 +3,13 @@ import express from "express";
 import formatResponse from "./middleware/formatResponse";
 import timezoneMiddleware from "./middleware/timezoneFormat";
 import verifyToken from "./middleware/verifyToken";
+import router from "./routes/index";
 const path = require("path");
 const app = express();
 const config = require("../config/config");
 const port = config.port || 3000;
 const dbUri = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
 const cors = require("cors");
-const router = require("./routes/index.js");
 
 const swaggerSetup = require("./utils/swagger");
 app.use(express.json());

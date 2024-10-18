@@ -1,8 +1,9 @@
-const User = require("../models/user");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("../../config/config");
-exports.login = async (req, res) => {
+import User from "../../models/user.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import config from "../../../config/config.js";
+
+export const login = async (req: any, res: any) => {
   try {
     const { account, password } = req.body;
     const user = await User.findOne({ account });
@@ -10,11 +11,13 @@ exports.login = async (req, res) => {
       res.sendResponse(500, null, "帳號或密碼錯誤");
       return;
     }
+
     const matchPwd = await bcrypt.compare(password, user.password);
     if (!matchPwd) {
       res.sendResponse(500, null, "帳號或密碼錯誤");
       return;
     }
+
     const token = jwt.sign(
       {
         id: user._id,
@@ -25,18 +28,21 @@ exports.login = async (req, res) => {
       config.jwtSecret,
       { expiresIn: "24h" }
     );
+
     const data = {
       token,
       name: user.name,
       account,
     };
+
     res.sendResponse(200, data, "登入成功");
   } catch (e) {
     console.log(e);
     res.sendResponse(500, null);
   }
 };
-exports.register = async (req, res) => {
+
+export const register = async (req: any, res: any) => {
   try {
     const { account, password } = req.body;
     const user = await User.findOne({ account });
@@ -44,6 +50,7 @@ exports.register = async (req, res) => {
       res.sendResponse(500, null, "帳號已存在");
       return;
     }
+
     const hashPwd = await bcrypt.hash(password, 10);
 
     const params = {

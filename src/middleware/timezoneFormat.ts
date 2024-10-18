@@ -11,11 +11,7 @@ import { Request, Response, NextFunction } from "express";
 const timezoneKey: string[] = ["createdAt", "updatedAt"];
 const timezone = "Asia/Taipei"; // 設置時區
 
-const timezoneMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+const timezoneMiddleware = (req: any, res: any, next: NextFunction): void => {
   // 保存原始的 res.send 方法
   const originalSend = res.send.bind(res);
 

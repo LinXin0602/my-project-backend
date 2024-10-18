@@ -1,6 +1,6 @@
-const Article = require("../models/article");
+import Article from "../../models/article";
 
-exports.createArticle = async (req, res) => {
+export const createArticle = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
     const params = { ...req.body, owner: userId };
@@ -11,7 +11,8 @@ exports.createArticle = async (req, res) => {
     res.sendResponse(500, e);
   }
 };
-exports.updateArticle = async (req, res) => {
+
+export const updateArticle = async (req: any, res: any) => {
   try {
     const { id } = req.body;
     const params = {
@@ -27,7 +28,7 @@ exports.updateArticle = async (req, res) => {
   }
 };
 
-exports.getUserArticle = async (req, res) => {
+export const getUserArticle = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
     const params = {
@@ -39,7 +40,8 @@ exports.getUserArticle = async (req, res) => {
     res.sendResponse(500, e);
   }
 };
-exports.deleteArticle = async (req, res) => {
+
+export const deleteArticle = async (req: any, res: any) => {
   try {
     const { id } = req.body;
     const article = await Article.findByIdAndDelete(id);
@@ -48,7 +50,8 @@ exports.deleteArticle = async (req, res) => {
     res.sendResponse(500, e);
   }
 };
-exports.getSingleArticle = async (req, res) => {
+
+export const getSingleArticle = async (req: any, res: any) => {
   try {
     const { id } = req.query;
     const params = {
