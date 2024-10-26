@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema, Model } from "mongoose";
+import type { ITask } from "./type";
 
-const taskSchema = new mongoose.Schema(
+// 創建 Task Schema
+const taskSchema: Schema<ITask> = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String },
@@ -9,9 +11,8 @@ const taskSchema = new mongoose.Schema(
       required: true,
       enum: ["未啟動", "執行中", "收尾階段", "結束"],
     },
-
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
@@ -21,5 +22,8 @@ const taskSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-const Task = mongoose.model("Task", taskSchema);
-module.exports = Task;
+
+// 定義並導出 Task 模型
+const Task: Model<ITask> = mongoose.model<ITask>("Task", taskSchema);
+
+export default Task;

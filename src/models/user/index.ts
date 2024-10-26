@@ -1,6 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose, { Document, Schema, Model } from "mongoose";
 
-const userSchema = new mongoose.Schema(
+import type { IUser } from "./type";
+
+// 創建 User Schema
+const userSchema: Schema<IUser> = new Schema(
   {
     name: { type: String, required: true },
     age: { type: Number, required: true },
@@ -10,8 +13,13 @@ const userSchema = new mongoose.Schema(
     role: { type: String, required: true, enum: ["user", "admin"] },
     approved: { type: Boolean, default: false },
   },
-  { timestamps: true, versionKey: false }
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
-const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+// 定義並導出 User 模型
+const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
+
+export default User;
