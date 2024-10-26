@@ -1,25 +1,26 @@
 import mongoose from "mongoose";
 import express from "express";
+import path from "path";
+import cors from "cors";
 import formatResponse from "./middleware/formatResponse";
 import timezoneMiddleware from "./middleware/timezoneFormat";
 import verifyToken from "./middleware/verifyToken";
+import config from "../config/config";
 import router from "./routes/index";
-const path = require("path");
-const app = express();
-const config = require("../config/config");
-const port = config.port || 3000;
-const dbUri = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
-const cors = require("cors");
+import swaggerSetup from "./utils/swagger";
 
-const swaggerSetup = require("./utils/swagger");
+const app = express();
+const port: number = config.port || 3000;
+const dbUri: string = config.dbUri || "mongodb://127.0.0.1:27017/MyProject";
+
 app.use(express.json());
 app.use(cors());
 
-//統一response格式
+// 統一response格式
 app.use(formatResponse);
 app.use(timezoneMiddleware);
 
-//驗證JWT
+// 驗證JWT
 app.use(verifyToken);
 
 // Routes
@@ -31,7 +32,7 @@ swaggerSetup(app);
 
 const startServer = () => {
   app.listen(port, () => {
-    console.log("server is running");
+    console.log(`Server is running on port: ${port}`);
   });
 };
 
@@ -41,8 +42,10 @@ const activateDB = async () => {
     startServer();
     console.log("MongoDB connected successfully");
   } catch (err) {
-    console.log("MongoDB connection error: ", err);
+    console.error("MongoDB connection error:", err);
   }
 };
 
 activateDB();
+
+export default app;
